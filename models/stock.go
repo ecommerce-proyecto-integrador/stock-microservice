@@ -8,9 +8,9 @@ type Tiendas struct {
 // Definición del struct para la tabla de stock
 type Stocks struct {
 	ID         int `json:"id"`
-	ProductoID int `json:"producto_id"`
-	TiendaID   int `json:"tienda_id"`
-	Cantidad   int `json:"cantidad"`
+	ProductoID int `json:"ProductoID"`
+	TiendaID   int `json:"TiendaID"`
+	Cantidad   int `json:"Cantidad"`
 }
 
 type StockResponse struct {
