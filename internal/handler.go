@@ -52,7 +52,7 @@ func Handler(d amqp.Delivery, ch *amqp.Channel) {
 		}
 		var err error
 		var stockJson []byte
-		var stock []models.Stock
+		var stock []models.Stocks
 
 		err = json.Unmarshal(Payload.Data.Data, &data)
 		stock, err = controllers.GetStockByProductId(data.Id)

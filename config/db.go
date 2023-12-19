@@ -31,5 +31,5 @@ func SetupDatabase() {
 }
 
 func autoMigrate(connection *gorm.DB) {
-	connection.Debug().AutoMigrate(&models.Product{}, &models.Category{}, &models.ProductImage{}, &models.Visit{})
+	connection.Debug().AutoMigrate(&models.Tiendas{}, &models.Stocks{})
 }

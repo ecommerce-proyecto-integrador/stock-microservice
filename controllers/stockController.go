@@ -7,8 +7,8 @@ import (
 	"github.com/ecommerce-proyecto-integrador/stock-microservice/mod/models"
 )
 
-func GetStockByProductId(Productid string) ([]models.Stock, error) {
-	var stock []models.Stock
+func GetStockByProductId(Productid string) ([]models.Stocks, error) {
+	var stock []models.Stocks
 	err := db.DB.
 		Table("Stocks").
 		Select("Stocks.id, Stocks.producto_id, Stocks.tienda_id, Stocks.cantidad, Tiendas.id as tienda_id, Tiendas.nombre as tienda_nombre").
