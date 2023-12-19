@@ -27,20 +27,19 @@ func Handler(d amqp.Delivery, ch *amqp.Channel) {
 	log.Println(" [.] Received a message")
 
 	var Payload struct {
-		Pattern string `json:"pattern"`
-		Data    struct {
-			Data    json.RawMessage `json:"data"`
-			Options struct {
+		Pattern struct {
+			Properties struct {
 				Type string `json:"type"`
-			} `json:"options"`
-		} `json:"data"`
-		ID string `json:"id"`
+			} `json:"properties"`
+		} `json:"pattern"`
+		Data json.RawMessage `json:"data"`
+		ID   string          `json:"id"`
 	}
 	var err error
 	err = json.Unmarshal(d.Body, &Payload)
 
-	actionType := Payload.Data.Options.Type
-	log.Println("inicio", Payload.Data.Data)
+	actionType := Payload.Pattern.Properties.Type
+	log.Println("inicio", Payload.Data)
 
 	//dataJSON, err := json.Marshal(Payload.Data.Data)
 	failOnError(err, "Failed to marshal data")
@@ -52,9 +51,9 @@ func Handler(d amqp.Delivery, ch *amqp.Channel) {
 		}
 		var err error
 		var stockJson []byte
-		var stock []models.Stocks
-
-		err = json.Unmarshal(Payload.Data.Data, &data)
+		var stock []models.StockResponse
+		log.Println("data ", Payload.Data)
+		err = json.Unmarshal(Payload.Data, &data)
 		stock, err = controllers.GetStockByProductId(data.Id)
 
 		stockJson, err = json.Marshal(stock)

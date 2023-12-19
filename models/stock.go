@@ -12,3 +12,9 @@ type Stocks struct {
 	TiendaID   int `json:"tienda_id"`
 	Cantidad   int `json:"cantidad"`
 }
+
+type StockResponse struct {
+	Id            string `json:"id"`
+	Tienda_nombre string `json:"tienda_nombre"`
+	Cantidad      int    `json:"cantidad"`
+}
